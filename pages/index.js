@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import { nanoid } from "nanoid";
+
 export default function Home() {
   const [url, setUrl] = useState("");
   const [response, setResponse] = useState("");
@@ -107,6 +109,7 @@ export default function Home() {
               <main>
                 {response.linksFound.map((link, indx) => (
                   <li
+                    key={nanoid()}
                     className="list"
                     style={{
                       color: "#000",
@@ -116,14 +119,12 @@ export default function Home() {
                       listStyle: "none",
                       textAlign: "start",
                     }}
-                    l
                   >
                     <a
                       style={{
                         color: "#000",
                         fontWeight: 800,
                       }}
-                      key={indx}
                       href={link}
                     >
                       {link}
