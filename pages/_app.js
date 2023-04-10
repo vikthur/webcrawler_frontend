@@ -1,7 +1,6 @@
-import "../styles/globals.css";
 import Head from "next/head";
-import {Helmet} from "react-helmet";
- 
+import { Helmet } from "react-helmet";
+import "../styles/global.css"
 function MyApp({ Component, pageProps }) {
   return (
     <>
