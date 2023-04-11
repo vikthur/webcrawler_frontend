@@ -3,6 +3,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { handleClear, handleStopEngine, handleReload } from "../utils/helperFunctions";
+import Link from "next/link";
 function App() {
   const [urlArray, setUrlArray] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -11,6 +12,7 @@ function App() {
   const [url, setUrl] = useState("");
   const [depth, setDepth] = useState("");
 
+  // on component mount == fetch pagination and data
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -28,14 +30,20 @@ function App() {
     fetchPosts();
   }, [currentPage]);
 
+  // pagination function
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
-  const handleSubmit = async () => {
-    setDepth("")
-    setUrl("")
 
+
+  const handleSubmit = async () => {
+
+    // clearing inputs after submission
+    // setDepth("")
+    // setUrl("")
+
+    // notification
     toast.info("submitting inputs !", {
       position: toast.POSITION.TOP_CENTER,
     });
@@ -87,14 +95,20 @@ function App() {
       });
   };
 
-
-
-
   return (
     <div className="App">
       <ToastContainer />
       <h1 className="webCrawler">Web crawler</h1>
+      <div className="captchaContainer">
+        <Link href="/captcha">
+          <button className="goBackButton">
 
+            view ReCAPTCHA demo
+
+          </button>
+        </Link>
+
+      </div>
       <main className="inputContainer">
         <div>
           <input
@@ -130,9 +144,6 @@ function App() {
         <div className="butCont">
           <button onClick={() => handleClear()}>Clear database</button>
           <button onClick={() => handleReload()}>Fetch data</button>
-          <button onClick={() => handleStopEngine()}>
-            Stop crawler Engine
-          </button>
         </div>
 
         <div className="ipCont">
