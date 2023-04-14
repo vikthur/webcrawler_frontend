@@ -198,3 +198,24 @@ body {
   font-weight: 500;
   margin-bottom: 40px;
 }
+
+.captchaContainer {
+  padding-left: 30px;
+}
+
+.captchaContainer button {
+}
+
+.goBackButton {
+  padding: 10px;
+  border: 1px solid #fff;
+  color: #fff;
+  background-color: #07011f;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.goBackButton:hover {
+  background-color: #fff;
+  color: #07011f;
+}
