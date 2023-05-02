@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { handleClear, handleStopEngine, handleReload } from "../utils/helperFunctions";
+import { handleClear, handleReload } from "../utils/helperFunctions";
 import Link from "next/link";
 function App() {
   const [urlArray, setUrlArray] = useState([]);
@@ -35,60 +35,15 @@ function App() {
     setCurrentPage(page);
   };
 
-
-
   const handleSubmit = async () => {
-
     // clearing inputs after submission
     // setDepth("")
     // setUrl("")
-
-    // notification
-    toast.info("submitting inputs !", {
-      position: toast.POSITION.TOP_CENTER,
-    });
 
     await axios
       .get(`http://localhost:4000/?url=${url}&depth=${depth}`)
       .then((response) => {
         setIp(response.data.ip);
-
-        if (response) {
-          setTimeout(function () {
-            toast.info("crawler starting !", {
-              position: toast.POSITION.TOP_CENTER,
-            });
-          }, 6000);
-
-          setTimeout(function () {
-            toast.success("crawler started !", {
-              position: toast.POSITION.TOP_CENTER,
-            });
-          }, 10000);
-
-          setTimeout(function () {
-            toast.info("populating database !", {
-              position: toast.POSITION.TOP_CENTER,
-            });
-          }, 20000);
-
-          setTimeout(function () {
-            toast.success("Database populated successfully !", {
-              position: toast.POSITION.TOP_CENTER,
-            });
-          }, 25000);
-
-          setTimeout(function () {
-            toast.success("Fetch data  now !", {
-              position: toast.POSITION.TOP_CENTER,
-            });
-          }, 30000);
-        } else {
-          toast.error(" Error clearing database  !", {
-            position: toast.POSITION.TOP_CENTER,
-          });
-        }
-
       })
       .catch((error) => {
         // console.log('Error:', error.message);
@@ -101,13 +56,8 @@ function App() {
       <h1 className="webCrawler">Web crawler</h1>
       <div className="captchaContainer">
         <Link href="/captcha">
-          <button className="goBackButton">
-
-            view ReCAPTCHA demo
-
-          </button>
+          <button className="goBackButton">view ReCAPTCHA demo</button>
         </Link>
-
       </div>
       <main className="inputContainer">
         <div>
@@ -138,7 +88,6 @@ function App() {
           submit
         </button>
       </div>
-
 
       <div className="controller">
         <div className="butCont">

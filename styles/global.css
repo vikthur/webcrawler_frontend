@@ -219,3 +219,25 @@ body {
   background-color: #fff;
   color: #07011f;
 }
+
+.container {
+  height: 15vh;
+  /* margin: auto; */
+  margin-bottom: 30px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.submitLabel {
+  width: 50%;
+  margin: auto;
+}
+.submitInput {
+  height: 25px;
+  width: 100%;
+  margin: auto;
+  padding: 5px;
+}
