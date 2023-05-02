@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { nanoid } from "nanoid";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { handleClear, handleReload } from "../utils/helperFunctions";
+import { handleClear, handleStopEngine } from "../utils/helperFunctions";
+// import { handleClear, handleStopEngine, handleReload } from "../utils/helperFunctions";
 import Link from "next/link";
 function App() {
   const [urlArray, setUrlArray] = useState([]);
@@ -29,6 +31,19 @@ function App() {
 
     fetchPosts();
   }, [currentPage]);
+
+  const handleReload = async () => {
+    const { data } = await axios.get(
+      `http://localhost:4000/urls?page=${currentPage}`
+    );
+
+    setUrlArray(data.urls);
+    setTotalPages(data.totalPages);
+    // window.location.reload();
+    toast.success("Page reloaded !", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+  };
 
   // pagination function
   const handlePageChange = (page) => {
@@ -126,7 +141,7 @@ function App() {
             </li>
             <main className="urlContainer">
               {item.urls?.map((item) => (
-                <a href={item} className="url">
+                <a href={item} key={nanoid()} className="url">
                   {item}
                 </a>
               ))}
