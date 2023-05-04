@@ -17,7 +17,7 @@ function App() {
     const fetchPosts = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:4000/urls?page=${currentPage}`
+          `http://localhost:5000/urls?page=${currentPage}`
         );
 
         setUrlArray(data.urls);

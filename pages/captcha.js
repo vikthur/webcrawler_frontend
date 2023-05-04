@@ -6,7 +6,7 @@ const CaptchaSolver = () => {
   const [query, setQuery] = useState("");
   const solveCaptcha = async () => {
     const response = await axios.get(
-      `http://localhost:4000/recaptcha_demo?rootUrl=${query}`
+      `http://localhost:5000/recaptcha_demo?rootUrl=${query}`
     );
     console.log(response, "captcha");
     setScreenshotUrl(response.data);

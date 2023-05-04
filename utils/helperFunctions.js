@@ -5,7 +5,7 @@ export const handleStopEngine = async () => {
 
 
     await axios
-        .post(`http://localhost:4000/stop-engine`)
+        .post(`http://localhost:5000/stop-engine`)
         .then((response) => {
             console.log(response, "stop-engine");
             if (response) {
@@ -32,7 +32,7 @@ export const handleClear = async () => {
         position: toast.POSITION.TOP_CENTER,
     });
     await axios
-        .delete("http://localhost:4000/clear-database")
+        .delete("http://localhost:5000/clear-database")
         .then((response) => {
             console.log(response);
             if (response) {
