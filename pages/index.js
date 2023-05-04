@@ -41,7 +41,7 @@ function App() {
     // setUrl("")
 
     await axios
-      .get(`http://localhost:4000/?url=${url}&depth=${depth}`)
+      .get(`http://localhost:5000/?url=${url}&depth=${depth}`)
       .then((response) => {
         setIp(response.data.ip);
       })
