@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>WhiteList Technologies</title>
+        <title>Web Crawler</title>
         <link rel="canonical" href="http://mysite.com/example" />
         <meta name="description" content="Enginnner and Communication Technology" />
       </Helmet>
