@@ -119,6 +119,10 @@ function App() {
                 <p>{item.title}</p>
               </div>
               <div className="url_title">
+                <h3>URL</h3>
+                <p>{item.url}</p>
+              </div>
+              <div className="url_title">
                 <h3>Page Header</h3>
 
                 <p>{item.header}</p>
