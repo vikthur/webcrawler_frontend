@@ -19,7 +19,7 @@ function App() {
     const fetchPosts = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:4000/urls?page=${currentPage}`
+          `http://localhost:5000/urls?page=${currentPage}`
         );
 
         setUrlArray(data.urls);
@@ -34,7 +34,7 @@ function App() {
 
   const handleReload = async () => {
     const { data } = await axios.get(
-      `http://localhost:4000/urls?page=${currentPage}`
+      `http://localhost:5000/urls?page=${currentPage}`
     );
 
     setUrlArray(data.urls);
@@ -51,17 +51,35 @@ function App() {
   };
 
   const handleSubmit = async () => {
+    if (!url) {
+      toast.error("missing URL value !", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 1000,
+      });
+      setUrl("");
+    }
+    if (!depth) {
+      toast.error("missing depth value !", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 1000,
+      });
+
+      setDepth("");
+    }
+
     // clearing inputs after submission
-    // setDepth("")
-    // setUrl("")
+    if (url && depth) {
+      setDepth("");
+      setUrl("");
+    }
 
     await axios
-      .get(`http://localhost:4000/?url=${url}&depth=${depth}`)
+      .get(`http://localhost:5000/?url=${url}&depth=${depth}`)
       .then((response) => {
         setIp(response.data.ip);
       })
       .catch((error) => {
-        // console.log('Error:', error.message);
+        console.log("Error:", error.message);
       });
   };
 

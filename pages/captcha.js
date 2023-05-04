@@ -5,11 +5,15 @@ const CaptchaSolver = () => {
   const [screenshotUrl, setScreenshotUrl] = useState(null);
   const [query, setQuery] = useState("");
   const solveCaptcha = async () => {
-    const response = await axios.get(
-      `http://localhost:4000/recaptcha_demo?rootUrl=${query}`
-    );
-    console.log(response, "captcha");
-    setScreenshotUrl(response.data);
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/recaptcha_demo?rootUrl=${query}`
+      );
+      console.log(response, "captcha");
+      setScreenshotUrl(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
