@@ -41,7 +41,7 @@ function App() {
     setTotalPages(data.totalPages);
   };
 
-  setInterval(reload, 2000)
+  setInterval(reload, 5000)
 
   const handleReload = async () => {
     await reload();
