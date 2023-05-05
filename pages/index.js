@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { handleClear, handleStopEngine } from "../utils/helperFunctions";
+// import { handleClear, handleStopEngine } from "../utils/helperFunctions";
 // import { handleClear, handleStopEngine, handleReload } from "../utils/helperFunctions";
 import Link from "next/link";
 function App() {
@@ -32,17 +32,41 @@ function App() {
     fetchPosts();
   }, [currentPage]);
 
-  const handleReload = async () => {
+  const reload = async () => {
     const { data } = await axios.get(
       `http://localhost:5000/urls?page=${currentPage}`
     );
 
     setUrlArray(data.urls);
     setTotalPages(data.totalPages);
+  };
+
+  const handleReload = async () => {
+    await reload();
     // window.location.reload();
     toast.dismiss();
     toast.success("Page reloaded !");
   };
+
+  const handleClear = async () => {
+    toast.warn("clearing database !");
+    await axios
+        .delete("http://localhost:5000/clear-database")
+        .then(async (response) => {
+            console.log(response);
+            toast.dismiss();
+            if (response) {
+              await reload();
+                toast.success("Cleared database succesfully !");
+            } else {
+                toast.error(" Error clearing database  !");
+            }
+
+        })
+        .catch((error) => {
+            // console.log('Error:', error.message);
+        });
+};
 
   // pagination function
   const handlePageChange = (page) => {
