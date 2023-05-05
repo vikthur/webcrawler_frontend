@@ -8,14 +8,11 @@ export const handleStopEngine = async () => {
         .post(`http://localhost:5000/stop-engine`)
         .then((response) => {
             console.log(response, "stop-engine");
+            toast.dismiss();
             if (response) {
-                toast.success("Engine stopped!", {
-                    position: toast.POSITION.TOP_CENTER,
-                });
+                toast.success("Engine stopped!");
             } else {
-                toast.error(" Error stopping  database  !", {
-                    position: toast.POSITION.TOP_CENTER,
-                });
+                toast.error(" Error stopping  database  !");
             }
 
             console.log("User deleted successfully!");
@@ -28,21 +25,16 @@ export const handleStopEngine = async () => {
 
 
 export const handleClear = async () => {
-    toast.warn("clearing database !", {
-        position: toast.POSITION.TOP_CENTER,
-    });
+    toast.warn("clearing database !");
     await axios
         .delete("http://localhost:5000/clear-database")
         .then((response) => {
             console.log(response);
+            toast.dismiss();
             if (response) {
-                toast.success("Cleared database succesfully !", {
-                    position: toast.POSITION.TOP_CENTER,
-                });
+                toast.success("Cleared database succesfully !");
             } else {
-                toast.error(" Error clearing database  !", {
-                    position: toast.POSITION.TOP_CENTER,
-                });
+                toast.error(" Error clearing database  !");
             }
 
         })
@@ -56,9 +48,7 @@ export const handleClear = async () => {
 
 export function handleReload() {
     window.location.reload();
-    toast.success("Page reloaded !", {
-        position: toast.POSITION.TOP_CENTER,
-    });
+    toast.success("Page reloaded !");
 }
 
 

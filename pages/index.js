@@ -40,9 +40,8 @@ function App() {
     setUrlArray(data.urls);
     setTotalPages(data.totalPages);
     // window.location.reload();
-    toast.success("Page reloaded !", {
-      position: toast.POSITION.TOP_CENTER,
-    });
+    toast.dismiss();
+    toast.success("Page reloaded !");
   };
 
   // pagination function
@@ -51,18 +50,13 @@ function App() {
   };
 
   const handleSubmit = async () => {
+    toast.dismiss();
     if (!url) {
-      toast.error("missing URL value !", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 1000,
-      });
+      toast.error("missing URL value !");
       setUrl("");
     }
     if (!depth) {
-      toast.error("missing depth value !", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 1000,
-      });
+      toast.error("missing depth value !");
 
       setDepth("");
     }
@@ -85,7 +79,7 @@ function App() {
 
   return (
     <div className="App">
-      <ToastContainer />
+      <ToastContainer autoClose={3000} position="top-center"/>
       <h1 className="webCrawler">Web crawler</h1>
       <div className="captchaContainer">
         <Link href="/captcha">
