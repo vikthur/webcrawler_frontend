@@ -3,12 +3,15 @@ import axios from "axios";
 import Link from "next/link";
 const CaptchaSolver = () => {
   const [screenshotUrl, setScreenshotUrl] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState("");
   const solveCaptcha = async () => {
     try {
+      setLoading(true);
       const response = await axios.get(
         `http://localhost:5000/recaptcha_demo?rootUrl=${query}`
       );
+      setLoading(false);
       console.log(response, "captcha");
       setScreenshotUrl(response.data);
     } catch (error) {
@@ -47,7 +50,7 @@ const CaptchaSolver = () => {
             height="500px"
           />
         ) : (
-          <p className="">Loading...</p>
+          <p className="">{loading ? 'Loading...' : ''}</p>
         )}
       </div>
     </section>
